@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gereja/app/data/constants/const_color.dart';
-import 'package:gereja/app/modules/widgets/input_form_button.dart';
-import 'package:gereja/app/routes/app_pages.dart';
+
 import 'package:get/get.dart';
 
+import '../../../data/constants/const_color.dart';
+import '../../../routes/app_pages.dart';
+import '../../widgets/input_form_button.dart';
 import '../../widgets/input_text_form_field.dart';
-import '../controllers/signin_controller.dart';
+import '../controllers/signup_controller.dart';
 
-class SigninView extends GetView<SigninController> {
-  const SigninView({super.key});
-
+class SignupView extends GetView<SignupController> {
+  const SignupView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +21,7 @@ class SigninView extends GetView<SigninController> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              'Welcome Back',
+              'Get started',
               style: TextStyle(
                 fontSize: 28.sp,
                 fontWeight: FontWeight.bold,
@@ -34,7 +34,7 @@ class SigninView extends GetView<SigninController> {
             // Email Field
             InputTextFormField(
               controller: controller.emailController,
-              hint: 'Enter your email',
+              hint: 'Enter Full Name',
               isSecureField: false,
               autoCorrect: false,
               validation: (value) {
@@ -45,12 +45,26 @@ class SigninView extends GetView<SigninController> {
               },
               hintTextSize: 14.sp,
             ),
-            const SizedBox(height: 16),
-
+            SizedBox(height: 12.h),
             // Password Field
             InputTextFormField(
               controller: controller.passwordController,
-              hint: 'Enter your password',
+              hint: 'Enter Email',
+              isSecureField: true,
+              autoCorrect: false,
+              validation: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Password is required';
+                }
+                return null;
+              },
+              hintTextSize: 14.sp,
+            ),
+            SizedBox(height: 12.h),
+            // Password Field
+            InputTextFormField(
+              controller: controller.passwordController,
+              hint: 'Enter  password',
               isSecureField: true,
               autoCorrect: false,
               validation: (value) {
@@ -64,28 +78,28 @@ class SigninView extends GetView<SigninController> {
             SizedBox(height: 28.h),
             InputFormButton(
               onClick: () {
-                // if (controller.formKey.currentState?.validate() ?? false) {
-                //   controller.login();
-                // }
-                Get.toNamed(Routes.BASE);
+                if (controller.formKey.currentState?.validate() ?? false) {
+                  controller.login();
+                }
               },
-              titleText: 'Login',
+              titleText: 'Signup',
               color: ConstColor.primaryColor,
             ),
+
             SizedBox(height: 12.h),
             GestureDetector(
-              onTap: () => Get.toNamed(Routes.SIGNUP),
+              onTap: () => Get.toNamed(Routes.SIGNIN),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Dont have account? ',
+                    'Already account? ',
                     style: TextStyle(
                       fontSize: 14.sp,
                     ),
                   ),
                   Text(
-                    'SignUp',
+                    'SignIn',
                     style: TextStyle(
                       fontSize: 14.sp,
                       color: ConstColor.primaryColor,

@@ -6,6 +6,13 @@ abstract class Routes {
   static const HOME = _Paths.HOME;
   static const SPLASH = _Paths.SPLASH;
   static const SIGNIN = _Paths.SIGNIN;
+  static const SIGNUP = _Paths.SIGNUP;
+  static const BASE = _Paths.BASE;
+  static const COMMONITY = _Paths.COMMONITY;
+  static const COMMUNITY = _Paths.COMMUNITY;
+  static const SCAN = _Paths.SCAN;
+  static const GIVING = _Paths.GIVING;
+  static const PROFILE = _Paths.PROFILE;
 }
 
 abstract class _Paths {
@@ -13,4 +20,11 @@ abstract class _Paths {
   static const HOME = '/home';
   static const SPLASH = '/splash';
   static const SIGNIN = '/signin';
+  static const SIGNUP = '/signup';
+  static const BASE = '/base';
+  static const COMMONITY = '/commonity';
+  static const COMMUNITY = '/community';
+  static const SCAN = '/scan';
+  static const GIVING = '/giving';
+  static const PROFILE = '/profile';
 }

@@ -1,9 +1,21 @@
 import 'package:get/get.dart';
 
+import '../modules/base/bindings/base_binding.dart';
+import '../modules/base/views/base_view.dart';
+import '../modules/community/bindings/community_binding.dart';
+import '../modules/community/views/community_view.dart';
+import '../modules/giving/bindings/giving_binding.dart';
+import '../modules/giving/views/giving_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/profile/bindings/profile_binding.dart';
+import '../modules/profile/views/profile_view.dart';
+import '../modules/scan/bindings/scan_binding.dart';
+import '../modules/scan/views/scan_view.dart';
 import '../modules/signin/bindings/signin_binding.dart';
 import '../modules/signin/views/signin_view.dart';
+import '../modules/signup/bindings/signup_binding.dart';
+import '../modules/signup/views/signup_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
 
@@ -29,6 +41,36 @@ class AppPages {
       name: _Paths.SIGNIN,
       page: () => const SigninView(),
       binding: SigninBinding(),
+    ),
+    GetPage(
+      name: _Paths.SIGNUP,
+      page: () => const SignupView(),
+      binding: SignupBinding(),
+    ),
+    GetPage(
+      name: _Paths.BASE,
+      page: () => BaseView(),
+      binding: BaseBinding(),
+    ),
+    GetPage(
+      name: _Paths.COMMUNITY,
+      page: () => const CommunityView(),
+      binding: CommunityBinding(),
+    ),
+    GetPage(
+      name: _Paths.SCAN,
+      page: () => const ScanView(),
+      binding: ScanBinding(),
+    ),
+    GetPage(
+      name: _Paths.GIVING,
+      page: () => const GivingView(),
+      binding: GivingBinding(),
+    ),
+    GetPage(
+      name: _Paths.PROFILE,
+      page: () => const ProfileView(),
+      binding: ProfileBinding(),
     ),
   ];
 }
