@@ -13,6 +13,7 @@ abstract class Routes {
   static const SCAN = _Paths.SCAN;
   static const GIVING = _Paths.GIVING;
   static const PROFILE = _Paths.PROFILE;
+  static const BIBLE = _Paths.BIBLE;
 }
 
 abstract class _Paths {
@@ -27,4 +28,5 @@ abstract class _Paths {
   static const SCAN = '/scan';
   static const GIVING = '/giving';
   static const PROFILE = '/profile';
+  static const BIBLE = '/bible';
 }

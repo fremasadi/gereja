@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 
 import '../modules/base/bindings/base_binding.dart';
 import '../modules/base/views/base_view.dart';
+import '../modules/bible/bindings/bible_binding.dart';
+import '../modules/bible/views/bible_view.dart';
 import '../modules/community/bindings/community_binding.dart';
 import '../modules/community/views/community_view.dart';
 import '../modules/giving/bindings/giving_binding.dart';
@@ -27,11 +29,6 @@ class AppPages {
   static const INITIAL = Routes.SPLASH;
 
   static final routes = [
-    GetPage(
-      name: _Paths.HOME,
-      page: () => const HomeView(),
-      binding: HomeBinding(),
-    ),
     GetPage(
       name: _Paths.SPLASH,
       page: () => const SplashView(),
@@ -71,6 +68,11 @@ class AppPages {
       name: _Paths.PROFILE,
       page: () => const ProfileView(),
       binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.BIBLE,
+      page: () => const BibleView(),
+      binding: BibleBinding(),
     ),
   ];
 }

@@ -16,100 +16,108 @@ class SignupView extends GetView<SignupController> {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-              'Get started',
-              style: TextStyle(
-                fontSize: 28.sp,
-                fontWeight: FontWeight.bold,
-                fontFamily: 'Bold',
+        child: Form(
+          key: controller.formKey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                'Get started',
+                style: TextStyle(
+                  fontSize: 28.sp,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Bold',
+                  color: ConstColor.primaryColor,
+                ),
+              ),
+              const SizedBox(height: 32), // space between title and form
+          
+              // Email Field
+              InputTextFormField(
+                controller: controller.nameController,
+                hint: 'Enter Full Name',
+                isSecureField: false,
+                autoCorrect: false,
+                validation: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Name is required';
+                  }
+                  return null;
+                },
+                hintTextSize: 14.sp,
+              ),
+              SizedBox(height: 12.h),
+              // Password Field
+              InputTextFormField(
+                controller: controller.emailController,
+                hint: 'Enter Email',
+                autoCorrect: false,
+                validation: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your email';
+                  }
+                  if (!GetUtils.isEmail(value)) {
+                    return 'Please enter a valid email';
+                  }
+                  return null;
+                },
+                hintTextSize: 14.sp,
+              ),
+              SizedBox(height: 12.h),
+              // Password Field
+              InputTextFormField(
+                controller: controller.passwordController,
+                hint: 'Enter  password',
+                isSecureField: true,
+                autoCorrect: false,
+                validation: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your password';
+                  }
+                  if (value.length < 6) {
+                    return 'Password must be at least 6 characters';
+                  }
+                  return null;
+                },
+                hintTextSize: 14.sp,
+              ),
+              SizedBox(height: 28.h),
+              InputFormButton(
+                onClick: () {
+                  if (controller.formKey.currentState?.validate() ?? false) {
+                    controller.register();
+                  }
+                },
+                titleText: 'Signup',
                 color: ConstColor.primaryColor,
               ),
-            ),
-            const SizedBox(height: 32), // space between title and form
-
-            // Email Field
-            InputTextFormField(
-              controller: controller.emailController,
-              hint: 'Enter Full Name',
-              isSecureField: false,
-              autoCorrect: false,
-              validation: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Email is required';
-                }
-                return null;
-              },
-              hintTextSize: 14.sp,
-            ),
-            SizedBox(height: 12.h),
-            // Password Field
-            InputTextFormField(
-              controller: controller.passwordController,
-              hint: 'Enter Email',
-              isSecureField: true,
-              autoCorrect: false,
-              validation: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Password is required';
-                }
-                return null;
-              },
-              hintTextSize: 14.sp,
-            ),
-            SizedBox(height: 12.h),
-            // Password Field
-            InputTextFormField(
-              controller: controller.passwordController,
-              hint: 'Enter  password',
-              isSecureField: true,
-              autoCorrect: false,
-              validation: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Password is required';
-                }
-                return null;
-              },
-              hintTextSize: 14.sp,
-            ),
-            SizedBox(height: 28.h),
-            InputFormButton(
-              onClick: () {
-                if (controller.formKey.currentState?.validate() ?? false) {
-                  controller.login();
-                }
-              },
-              titleText: 'Signup',
-              color: ConstColor.primaryColor,
-            ),
-
-            SizedBox(height: 12.h),
-            GestureDetector(
-              onTap: () => Get.toNamed(Routes.SIGNIN),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Already account? ',
-                    style: TextStyle(
-                      fontSize: 14.sp,
+          
+              SizedBox(height: 12.h),
+              GestureDetector(
+                onTap: () => Get.toNamed(Routes.SIGNIN),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Already account? ',
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                      ),
                     ),
-                  ),
-                  Text(
-                    'SignIn',
-                    style: TextStyle(
-                      fontSize: 14.sp,
-                      color: ConstColor.primaryColor,
-                      fontFamily: 'SemiBold',
-                    ),
-                  )
-                ],
-              ),
-            )
-          ],
+                    Text(
+                      'SignIn',
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        color: ConstColor.primaryColor,
+                        fontFamily: 'SemiBold',
+                      ),
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

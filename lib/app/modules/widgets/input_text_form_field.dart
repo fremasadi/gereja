@@ -12,6 +12,7 @@ class InputTextFormField extends StatefulWidget {
   final bool enable;
   final TextInputAction? textInputAction;
   final Function(String)? onFieldSubmitted;
+  final int maxLines;
 
   const InputTextFormField({
     super.key,
@@ -25,6 +26,7 @@ class InputTextFormField extends StatefulWidget {
     this.textInputAction,
     this.hintTextSize = 14,
     this.onFieldSubmitted,
+    this.maxLines = 1,
   });
 
   @override
@@ -48,11 +50,13 @@ class _InputTextFormFieldState extends State<InputTextFormField> {
       obscureText: widget.isSecureField && !_passwordVisible,
       enableSuggestions: !widget.isSecureField,
       autocorrect: widget.autoCorrect,
-      validator: widget.validation ?? (_) => null, // Default null validation
+      validator: widget.validation ?? (_) => null,
+      // Default null validation
       autovalidateMode: AutovalidateMode.onUserInteraction,
       enabled: widget.enable,
       textInputAction: widget.textInputAction,
       onFieldSubmitted: widget.onFieldSubmitted,
+      maxLines: widget.maxLines,
       decoration: InputDecoration(
         filled: true,
         fillColor: ConstColor.white,
@@ -60,15 +64,16 @@ class _InputTextFormFieldState extends State<InputTextFormField> {
         hintStyle: TextStyle(
           fontSize: widget.hintTextSize,
         ),
-        contentPadding: widget.contentPadding ?? const EdgeInsets.all(16.0), // Default padding
+        contentPadding: widget.contentPadding ?? const EdgeInsets.all(16.0),
+        // Default padding
         suffixIcon: widget.isSecureField
             ? IconButton(
-          icon: Icon(
-            _passwordVisible ? Icons.visibility : Icons.visibility_off,
-            color: Colors.black87,
-          ),
-          onPressed: _togglePasswordVisibility,
-        )
+                icon: Icon(
+                  _passwordVisible ? Icons.visibility : Icons.visibility_off,
+                  color: Colors.black87,
+                ),
+                onPressed: _togglePasswordVisibility,
+              )
             : null,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12.0),

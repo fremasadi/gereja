@@ -7,15 +7,22 @@ class InputFormButton extends StatelessWidget {
   final Color? color;
   final double? cornerRadius;
   final EdgeInsets padding;
+  final TextStyle? textStyle;
+  final Color? borderColor;
+  final double? borderWidth;
 
-  const InputFormButton(
-      {super.key,
-      required this.onClick,
-      this.titleText,
-      this.icon,
-      this.color,
-      this.cornerRadius,
-      this.padding = const EdgeInsets.symmetric(horizontal: 16)});
+  const InputFormButton({
+    super.key,
+    required this.onClick,
+    this.titleText,
+    this.icon,
+    this.color,
+    this.cornerRadius,
+    this.padding = const EdgeInsets.symmetric(horizontal: 16),
+    this.textStyle,
+    this.borderColor,
+    this.borderWidth,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -31,19 +38,21 @@ class InputFormButton extends StatelessWidget {
             color ?? Theme.of(context).primaryColor),
         shape: WidgetStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(cornerRadius ?? 12.0)),
+            borderRadius: BorderRadius.circular(cornerRadius ?? 12.0),
+            side: BorderSide(
+              color: borderColor ?? Colors.transparent,
+              width: borderWidth ?? 0,
+            ),
+          ),
         ),
       ),
       child: titleText != null
           ? Text(
               titleText!,
-              style:
+              style: textStyle ??
                   const TextStyle(color: Colors.white, fontFamily: 'SemiBold'),
             )
-          : Image.asset(
-              'kFilterIcon',
-              color: Colors.white,
-            ),
+          : icon ?? const Icon(Icons.filter_list, color: Colors.white),
     );
   }
 }

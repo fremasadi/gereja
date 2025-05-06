@@ -6,18 +6,18 @@ import '../controllers/scan_controller.dart';
 
 class ScanView extends GetView<ScanController> {
   const ScanView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ScanView'),
+        title: const Text('Scan'),
         centerTitle: true,
       ),
-      body: const Center(
-        child: Text(
-          'ScanView is working',
-          style: TextStyle(fontSize: 20),
-        ),
+      body: Column(
+        children: [
+          Container(),
+        ],
       ),
     );
   }
