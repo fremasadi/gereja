@@ -1,5 +1,9 @@
 import 'package:get/get.dart';
 
+import '../modules/add_infaq/bindings/add_infaq_binding.dart';
+import '../modules/add_infaq/views/add_infaq_view.dart';
+import '../modules/add_marriage/bindings/add_marriage_binding.dart';
+import '../modules/add_marriage/views/add_marriage_view.dart';
 import '../modules/base/bindings/base_binding.dart';
 import '../modules/base/views/base_view.dart';
 import '../modules/bible/bindings/bible_binding.dart';
@@ -10,6 +14,10 @@ import '../modules/giving/bindings/giving_binding.dart';
 import '../modules/giving/views/giving_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/infaq/bindings/infaq_binding.dart';
+import '../modules/infaq/views/infaq_view.dart';
+import '../modules/marriage/bindings/marriage_binding.dart';
+import '../modules/marriage/views/marriage_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
 import '../modules/scan/bindings/scan_binding.dart';
@@ -73,6 +81,26 @@ class AppPages {
       name: _Paths.BIBLE,
       page: () => const BibleView(),
       binding: BibleBinding(),
+    ),
+    GetPage(
+      name: _Paths.INFAQ,
+      page: () => const InfaqView(),
+      binding: InfaqBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADD_INFAQ,
+      page: () => const AddInfaqView(),
+      binding: AddInfaqBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADD_MARRIAGE,
+      page: () => const AddMarriageView(),
+      binding: AddMarriageBinding(),
+    ),
+    GetPage(
+      name: _Paths.MARRIAGE,
+      page: () => const MarriageView(),
+      binding: MarriageBinding(),
     ),
   ];
 }

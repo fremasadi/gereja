@@ -130,7 +130,9 @@ class HomeView extends GetView<HomeController> {
                     _MenuItem(
                       icon: Icons.favorite,
                       label: "Marriage",
-                      onPress: () {},
+                      onPress: () {
+                        Get.toNamed(Routes.MARRIAGE);
+                      },
                     ),
                     _MenuItem(
                       icon: Icons.menu_book,

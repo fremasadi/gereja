@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gereja/app/data/constants/const_color.dart';
+import 'package:gereja/app/modules/infaq/views/infaq_view.dart';
 import 'package:gereja/app/modules/profile/views/profile_view.dart';
 import 'package:get/get.dart';
 
@@ -17,47 +18,46 @@ class BaseView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<BaseController>(
-        builder: (controller) {
-          return Scaffold(
-            body: IndexedStack(
-              index: controller.currentIndex,
-              children: const [
-                HomeView(),
-                CommunityView(),
-                ScanView(),
-                GivingView(),
-                ProfileView(),
-              ],
-            ),
-            bottomNavigationBar: Container(
-              height: 65.h,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.1),
-                    blurRadius: 4,
-                  ),
-                ],
+    return GetBuilder<BaseController>(builder: (controller) {
+      return Scaffold(
+        body: IndexedStack(
+          index: controller.currentIndex,
+          children: const [
+            HomeView(),
+            CommunityView(),
+            ScanView(),
+            InfaqView(),
+            ProfileView(),
+          ],
+        ),
+        bottomNavigationBar: Container(
+          height: 65.h,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.1),
+                blurRadius: 4,
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  _buildNavItem(0, Icons.home, "Home", controller),
-                  _buildNavItem(1, Icons.group, "Community", controller),
-                  _buildScanButton(controller),
-                  _buildNavItem(3, Icons.card_giftcard, "Giving", controller),
-                  _buildNavItem(4, Icons.person, "Profile", controller),
-                ],
-              ),
-            ),
-          );
-        }
-    );
+            ],
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              _buildNavItem(0, Icons.home, "Home", controller),
+              _buildNavItem(1, Icons.group, "Community", controller),
+              _buildScanButton(controller),
+              _buildNavItem(3, Icons.card_giftcard, "Giving", controller),
+              _buildNavItem(4, Icons.person, "Profile", controller),
+            ],
+          ),
+        ),
+      );
+    });
   }
 
-  Widget _buildNavItem(int index, IconData icon, String title, BaseController controller) {
+  Widget _buildNavItem(
+      int index, IconData icon, String title, BaseController controller) {
     final bool isSelected = controller.currentIndex == index;
     return InkWell(
       onTap: () => controller.changeIndex(index),
@@ -70,11 +70,11 @@ class BaseView extends StatelessWidget {
             size: 20.sp,
             color: isSelected ? ConstColor.primaryColor : Colors.grey,
           ),
-           SizedBox(height: 6.h), // Jarak sangat minimal antara ikon dan teks
+          SizedBox(height: 6.h), // Jarak sangat minimal antara ikon dan teks
           Text(
             title,
             style: TextStyle(
-                fontSize: 10.sp,
+              fontSize: 10.sp,
               color: isSelected ? ConstColor.primaryColor : Colors.grey,
               height: 0.8, // Mengurangi line height
             ),
@@ -105,18 +105,20 @@ class BaseView extends StatelessWidget {
                   ),
                 ],
               ),
-              child:  Icon(
+              child: Icon(
                 Icons.qr_code_scanner,
                 color: Colors.white,
                 size: 25.sp,
               ),
             ),
-             SizedBox(height: 6.h),
+            SizedBox(height: 6.h),
             Text(
               "Scan",
               style: TextStyle(
                 fontSize: 10.sp,
-                color: controller.currentIndex == 2 ? ConstColor.primaryColor : Colors.grey,
+                color: controller.currentIndex == 2
+                    ? ConstColor.primaryColor
+                    : Colors.grey,
                 height: 0.8,
                 fontWeight: FontWeight.w500,
               ),

@@ -1,5 +1,7 @@
+import 'package:gereja/app/modules/community/controllers/community_controller.dart';
 import 'package:gereja/app/modules/home/controllers/home_controller.dart';
 import 'package:gereja/app/modules/home/controllers/seatbooking_controller.dart';
+import 'package:gereja/app/modules/infaq/controllers/infaq_controller.dart';
 import 'package:get/get.dart';
 
 import '../../home/controllers/counseling_controller.dart';
@@ -19,5 +21,7 @@ class BaseBinding extends Bindings {
       fenix: true, // This recreates the controller when needed
     );
     Get.put(SeatbookingController());
+    Get.put(InfaqController());
+    Get.put(CommunityController());
   }
 }

@@ -1,23 +1,30 @@
 import 'package:get/get.dart';
 
-class CommunityController extends GetxController {
-  //TODO: Implement CommunityController
+import '../../../data/models/community_model.dart';
+import '../../../data/repository/community_repository.dart';
 
-  final count = 0.obs;
+class CommunityController extends GetxController {
+  var communities = <Community>[].obs;
+  var isLoading = false.obs;
+
+  final CommunityRepository repository = CommunityRepository();
+
   @override
   void onInit() {
     super.onInit();
+    fetchCommunities();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
+  void fetchCommunities() async {
+    try {
+      isLoading.value = true;
+      final data = await repository.fetchCommunities();
+      communities.value = data;
+    } catch (e) {
+      // Tangani error, misal log atau tampilkan snackbar
+      print('Error fetching communities: $e');
+    } finally {
+      isLoading.value = false;
+    }
   }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }

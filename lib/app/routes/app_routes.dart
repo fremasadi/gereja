@@ -14,6 +14,10 @@ abstract class Routes {
   static const GIVING = _Paths.GIVING;
   static const PROFILE = _Paths.PROFILE;
   static const BIBLE = _Paths.BIBLE;
+  static const INFAQ = _Paths.INFAQ;
+  static const ADD_INFAQ = _Paths.ADD_INFAQ;
+  static const ADD_MARRIAGE = _Paths.ADD_MARRIAGE;
+  static const MARRIAGE = _Paths.MARRIAGE;
 }
 
 abstract class _Paths {
@@ -29,4 +33,8 @@ abstract class _Paths {
   static const GIVING = '/giving';
   static const PROFILE = '/profile';
   static const BIBLE = '/bible';
+  static const INFAQ = '/infaq';
+  static const ADD_INFAQ = '/add-infaq';
+  static const ADD_MARRIAGE = '/add-marriage';
+  static const MARRIAGE = '/marriage';
 }
